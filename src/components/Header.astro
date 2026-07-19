@@ -1,12 +1,4 @@
 ---
-import { tools } from '../data/tools';
-
-const searchIndex = tools.map(t => ({
-  slug: t.slug,
-  name: t.name,
-  shortName: t.shortName,
-  keywords: t.keywords,
-}));
 import { getSisterSites } from '../data/sisterSites';
 const sisters = getSisterSites('ai');
 ---
@@ -18,74 +10,15 @@ const sisters = getSisterSites('ai');
       <div class="logo-sub">AI · 智能助手工具箱</div>
     </div>
   </a>
-  <div class="header-search">
-    <input type="search" id="site-search" placeholder="搜索工具（如 写作、翻译、Prompt、Token…）" autocomplete="off" />
-  </div>
   <nav class="header-nav">
     <a href="/">全部工具</a>
-    <div class="sister-dropdown" id="sister-dropdown">
-      <button class="sister-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-        姊妹站 <span class="sister-caret">▾</span>
-      </button>
-      <div class="sister-menu" role="menu">
-        {sisters.map(s => (
-          <a href={s.href} class="sister-link" target="_blank" rel="noopener" role="menuitem">
-            <span class="sister-icon">{s.icon}</span>
-            <span class="sister-text">
-              <strong>{s.shortName}</strong>
-              <small>{s.slogan}</small>
-            </span>
-          </a>
-        ))}
-      </div>
-    </div>
+{sisters.map(s => (
+      <a href={s.href} class="nav-sister" target="_blank" rel="noopener" title={s.slogan}>
+        <span class="nav-sister-icon">{s.icon}</span>
+        <span class="nav-sister-name">{s.shortName}</span>
+      </a>
+    ))}
     <a href="https://hypergrad.cn" target="_blank" rel="noopener">DeepSeal 官网</a>
     <a href="https://hypergrad.cn#pricing" target="_blank" rel="noopener" class="header-cta">下载 DeepSeal</a>
   </nav>
 </header>
-<script is:inline>
-  (function () {
-    var dd = document.getElementById('sister-dropdown');
-    if (!dd) return;
-    var toggle = dd.querySelector('.sister-toggle');
-    if (!toggle) return;
-    toggle.addEventListener('click', function (e) {
-      e.stopPropagation();
-      var isOpen = dd.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    });
-    document.addEventListener('click', function () {
-      dd.classList.remove('is-open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        dd.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      }
-    });
-    dd.addEventListener('click', function (e) { e.stopPropagation(); });
-  })();
-</script>
-<script is:inline define:vars={{ searchIndex }}>
-  // 站内搜索：输入关键词跳转匹配工具
-  var search = document.getElementById('site-search');
-  if (search) {
-    search.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
-        var q = search.value.trim().toLowerCase();
-        if (!q) return;
-        // 全字段匹配
-        var best = searchIndex.find(function (t) {
-          return t.name.toLowerCase().indexOf(q) !== -1 ||
-            t.shortName.toLowerCase().indexOf(q) !== -1 ||
-            t.slug.indexOf(q) !== -1 ||
-            t.keywords.some(function (k) { return k.toLowerCase().indexOf(q) !== -1 || q.indexOf(k.toLowerCase()) !== -1; });
-        });
-        if (best) {
-          window.location.href = '/' + best.slug;
-        }
-      }
-    });
-  }
-</script>

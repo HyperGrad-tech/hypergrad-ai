@@ -135,11 +135,6 @@ _hmt.push(['_setCookieDomain', '.hypergrad.cn']);
         <span class={`tag tag-${tool.priority.toLowerCase()}`}>{tool.priority}</span>
       </div>
 
-      <!-- 隐私徽章（BYOK 工具与纯前端工具有不同提示） -->
-      <div class="privacy-badge" style="margin-bottom: var(--space-lg);">
-        {tool.byok ? '密钥本地存储 · 仅直接发送至 AI 官方 API · 我们零存储' : '100% 本地处理 · 数据不离开浏览器'}
-      </div>
-
       <!-- 工具主体（由各页面通过 slot 传入 React 组件） -->
       <div class="tool-react-root">
         <slot />
@@ -198,6 +193,11 @@ _hmt.push(['_setCookieDomain', '.hypergrad.cn']);
           ))}
         </div>
       </section>
+
+      <!-- 隐私徽章（BYOK 工具与纯前端工具有不同提示） -->
+      <div class="privacy-badge privacy-badge--footer">
+        {tool.byok ? '密钥本地存储 · 仅直接发送至 AI 官方 API · 我们零存储' : '100% 本地处理 · 数据不离开浏览器'}
+      </div>
 
     </main>
   </div>
