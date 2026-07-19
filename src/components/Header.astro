@@ -7,6 +7,8 @@ const searchIndex = tools.map(t => ({
   shortName: t.shortName,
   keywords: t.keywords,
 }));
+import { getSisterSites } from '../data/sisterSites';
+const sisters = getSisterSites('ai');
 ---
 <header class="header">
   <a href="/" class="header-logo">
@@ -21,12 +23,50 @@ const searchIndex = tools.map(t => ({
   </div>
   <nav class="header-nav">
     <a href="/">全部工具</a>
-    <a href="https://crypto.hypergrad.cn" target="_blank" rel="noopener">加密工具 ↗</a>
-    <a href="https://devtools.hypergrad.cn" target="_blank" rel="noopener">开发者工具 ↗</a>
+    <div class="sister-dropdown" id="sister-dropdown">
+      <button class="sister-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+        姊妹站 <span class="sister-caret">▾</span>
+      </button>
+      <div class="sister-menu" role="menu">
+        {sisters.map(s => (
+          <a href={s.href} class="sister-link" target="_blank" rel="noopener" role="menuitem">
+            <span class="sister-icon">{s.icon}</span>
+            <span class="sister-text">
+              <strong>{s.shortName}</strong>
+              <small>{s.slogan}</small>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
     <a href="https://hypergrad.cn" target="_blank" rel="noopener">DeepSeal 官网</a>
     <a href="https://hypergrad.cn#pricing" target="_blank" rel="noopener" class="header-cta">下载 DeepSeal</a>
   </nav>
 </header>
+<script is:inline>
+  (function () {
+    var dd = document.getElementById('sister-dropdown');
+    if (!dd) return;
+    var toggle = dd.querySelector('.sister-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var isOpen = dd.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+    document.addEventListener('click', function () {
+      dd.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        dd.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+    dd.addEventListener('click', function (e) { e.stopPropagation(); });
+  })();
+</script>
 <script is:inline define:vars={{ searchIndex }}>
   // 站内搜索：输入关键词跳转匹配工具
   var search = document.getElementById('site-search');

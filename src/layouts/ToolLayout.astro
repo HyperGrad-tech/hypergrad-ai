@@ -68,6 +68,8 @@ const allSchema = {
   '@context': 'https://schema.org',
   '@graph': graphItems,
 };
+import { getSisterSites } from '../data/sisterSites';
+const sisters = getSisterSites('ai');
 ---
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -180,6 +182,23 @@ _hmt.push(['_setCookieDomain', '.hypergrad.cn']);
           </div>
         </section>
       )}
+<!-- CROSS-SITES -->
+      <section class="cross-sites-section">
+        <h2>HyperGrad 生态还有这些站</h2>
+        <div class="cross-sites-grid">
+          {sisters.map(s => (
+            <a href={s.href} class="cross-site-card" target="_blank" rel="noopener">
+              <span class="cross-site-icon">{s.icon}</span>
+              <span class="cross-site-info">
+                <strong>{s.shortName}</strong>
+                <span class="cross-site-hot">{s.hot[0].name} · {s.hot[1].name}</span>
+              </span>
+              <span class="cross-site-arrow" aria-hidden="true">↗</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
     </main>
   </div>
 

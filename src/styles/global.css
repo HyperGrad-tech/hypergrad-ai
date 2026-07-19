@@ -1005,3 +1005,116 @@ input, textarea, select {
 @media (prefers-reduced-motion: reduce) {
   .loading-dot { animation: none; opacity: 0.6; }
 }
+
+
+/* SISTER-DROPDOWN — 姊妹站下拉菜单（全局） */
+.sister-dropdown { position: relative; display: inline-block; }
+.sister-toggle {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: transparent; border: none;
+  color: var(--text); font: inherit;
+  padding: 6px 10px; border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.sister-toggle:hover { background: var(--bg-soft); }
+.sister-dropdown.is-open .sister-toggle {
+  background: var(--blue-bg);
+  color: var(--blue-dark);
+}
+.sister-caret { font-size: 11px; line-height: 1; opacity: 0.7; }
+.sister-menu {
+  position: absolute; top: 100%; left: 0;
+  min-width: 280px; max-width: 340px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.10);
+  padding: 6px; margin-top: 8px;
+  display: none; z-index: 200;
+}
+.sister-dropdown.is-open .sister-menu { display: block; }
+.sister-link {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.15s ease;
+}
+.sister-link:hover { background: var(--bg-soft); }
+.sister-link .sister-icon {
+  font-size: 18px; line-height: 1; margin-top: 2px;
+  flex-shrink: 0;
+}
+.sister-link .sister-text {
+  display: flex; flex-direction: column; gap: 2px;
+  min-width: 0;
+}
+.sister-link .sister-text strong {
+  font-size: 14px; font-weight: 600; color: var(--text);
+  white-space: nowrap;
+}
+.sister-link .sister-text small {
+  font-size: 12px; color: var(--text-muted); line-height: 1.4;
+}
+@media (max-width: 768px) {
+  .sister-menu {
+    position: fixed; left: 8px; right: 8px;
+    min-width: 0; max-width: none;
+    margin-top: 4px;
+  }
+}
+
+
+/* CROSS-SITES — 工具页底部跨站推荐（全局） */
+.cross-sites-section {
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--border);
+}
+.cross-sites-section h2 {
+  font-size: 16px; font-weight: 700;
+  color: var(--text);
+  margin: 0 0 14px;
+}
+.cross-sites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+.cross-site-card {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.cross-site-card:hover {
+  border-color: var(--blue);
+  transform: translateX(2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.12);
+}
+.cross-site-icon {
+  font-size: 20px; line-height: 1;
+  flex-shrink: 0;
+}
+.cross-site-info {
+  display: flex; flex-direction: column; gap: 2px;
+  flex: 1; min-width: 0;
+}
+.cross-site-info strong {
+  font-size: 14px; font-weight: 600; color: var(--text);
+}
+.cross-site-hot {
+  font-size: 11px; color: var(--text-muted);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.cross-site-arrow {
+  font-size: 14px; font-weight: 700;
+  color: var(--blue);
+  flex-shrink: 0;
+}
+

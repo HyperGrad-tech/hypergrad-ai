@@ -8,6 +8,8 @@ const priorityOrder: Priority[] = ['P0', 'P1', 'P2'];
 const totalTools = tools.length;
 const byokCount = tools.filter(t => t.byok).length;
 const localCount = totalTools - byokCount;
+import { getSisterSites } from '../data/sisterSites';
+const sisters = getSisterSites('ai');
 ---
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -93,6 +95,32 @@ _hmt.push(['_setCookieDomain', '.hypergrad.cn']);
         </section>
       );
     })}
+
+<!-- SISTER-CARDS -->
+    <section class="sister-sites-section">
+      <h2>还需要别的工具？看看姊妹站</h2>
+      <p class="sister-section-desc">HyperGrad 一共 5 个工具站，全部本地处理、互不打扰——挑一个继续探索。</p>
+      <div class="sister-cards">
+        {sisters.map(s => (
+          <a href={s.href} class="sister-card" target="_blank" rel="noopener">
+            <div class="sister-card-head">
+              <span class="sister-card-icon">{s.icon}</span>
+              <div class="sister-card-head-text">
+                <strong>{s.shortName}</strong>
+                <span class="sister-card-href">{s.href.replace('https://', '')}</span>
+              </div>
+            </div>
+            <p class="sister-card-slogan">{s.slogan}</p>
+            <ul class="sister-card-tools">
+              {s.hot.slice(0, 5).map(h => (
+                <li>{h.name}</li>
+              ))}
+            </ul>
+            <span class="sister-card-cta">访问 {s.shortName} →</span>
+          </a>
+        ))}
+      </div>
+    </section>
 
     <!-- 关于 -->
     <section class="seo-content">
@@ -223,6 +251,85 @@ _hmt.push(['_setCookieDomain', '.hypergrad.cn']);
       font-size: 13px;
       padding: 6px 16px;
     }
+  
+    /* SISTER-CARDS — 首页姊妹站大卡片 */
+    .sister-sites-section {
+      margin: var(--space-xl) 0 var(--space-lg);
+      padding-top: var(--space-lg);
+      border-top: 1px solid var(--border);
+    }
+    .sister-sites-section h2 {
+      font-size: 22px; font-weight: 700;
+      color: var(--text);
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+    .sister-section-desc {
+      font-size: 14px; color: var(--text-muted);
+      margin: 0 0 20px;
+    }
+    .sister-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+    .sister-card {
+      display: flex; flex-direction: column; gap: 10px;
+      padding: 18px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+    .sister-card:hover {
+      border-color: var(--blue);
+      box-shadow: 0 8px 24px rgba(99, 102, 241, 0.15);
+      transform: translateY(-2px);
+    }
+    .sister-card-head {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .sister-card-icon {
+      font-size: 22px; line-height: 1;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--blue-bg);
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .sister-card-head-text {
+      display: flex; flex-direction: column; gap: 2px;
+      min-width: 0;
+    }
+    .sister-card-head-text strong {
+      font-size: 16px; font-weight: 700; color: var(--text);
+    }
+    .sister-card-href {
+      font-size: 11px; color: var(--text-muted);
+    }
+    .sister-card-slogan {
+      font-size: 13px; color: var(--text-muted);
+      line-height: 1.5; margin: 0;
+    }
+    .sister-card-tools {
+      list-style: none; padding: 0; margin: 4px 0 0;
+      display: flex; flex-wrap: wrap; gap: 6px 8px;
+    }
+    .sister-card-tools li {
+      font-size: 12px; color: var(--text);
+      background: var(--bg-soft);
+      padding: 3px 9px;
+      border-radius: 12px;
+      white-space: nowrap;
+    }
+    .sister-card-cta {
+      margin-top: auto;
+      font-size: 13px; font-weight: 600;
+      color: var(--blue);
+    }
+
   </style>
 </body>
 </html>
