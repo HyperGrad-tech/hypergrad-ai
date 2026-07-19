@@ -10,6 +10,31 @@ const byokCount = tools.filter(t => t.byok).length;
 const localCount = totalTools - byokCount;
 import { getSisterSites } from '../data/sisterSites';
 const sisters = getSisterSites('ai');
+
+const homeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://hypergrad.cn/#organization",
+      "name": "HyperGrad",
+      "url": "https://hypergrad.cn/",
+      "description": "HyperGrad 是一系列纯前端在线工具 + 本地加密笔记应用的集合站，专注隐私保护与本地化处理。"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ai.hypergrad.cn/#website",
+      "url": "https://ai.hypergrad.cn/",
+      "name": "HyperGrad AI — 纯前端 AI 工具箱 · 写作/翻译/总结/Prompt/对话 | BYOK 零中转",
+      "description": "16 个 AI 工具：AI 写作、翻译、总结、标题、营销文案、邮件、周报、代码解释、AI 对话、Prompt 库/优化/生成、Token 计数、Markdown、图片压缩。BYOK 模式密钥本地存储直连官方 API，零中转零存储。",
+      "inLanguage": "zh-CN",
+      "publisher": {
+        "@id": "https://hypergrad.cn/#organization"
+      }
+    }
+  ]
+};
+
 ---
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -35,6 +60,9 @@ _hmt.push(['_setCookieDomain', '.hypergrad.cn']);
   s.parentNode.insertBefore(hm, s);
 })();
   </script>
+  <!-- home-schema:start -->
+  <script type="application/ld+json" set:html={JSON.stringify(homeSchema)} />
+  <!-- home-schema:end -->
 </head>
 <body>
   <!-- DeepSeal 推广条 -->
