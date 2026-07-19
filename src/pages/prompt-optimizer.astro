@@ -1,0 +1,33 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import PromptOptimizer from '../components/tools/PromptOptimizer.tsx';
+---
+<ToolLayout slug="prompt-optimizer">
+  <PromptOptimizer client:load />
+  <div slot="seo-content">
+    <h2>AI Prompt 优化器：让粗糙指令变成高质量提示词</h2>
+    <p>
+      你不需要是 Prompt 工程师，也能写出好 Prompt。把粗糙的指令丢给 AI Prompt 优化器，它会按 Prompt 工程最佳实践重构：补足缺失约束、消除歧义、添加结构、明确输出格式，并附上"优化说明"告诉你改了什么、为什么改。基于 BYOK 模式，密钥本地存储，请求直连 AI 官方 API。
+    </p>
+    <h3>好 Prompt 的评估维度</h3>
+    <ul>
+      <li><strong>角色明确</strong>：是否指定了 AI 的身份与视角。</li>
+      <li><strong>任务清晰</strong>：动词开头，无歧义。</li>
+      <li><strong>约束具体</strong>：字数、格式、风格、禁用项是否齐备。</li>
+      <li><strong>结构化</strong>：分点或模板化，便于 AI 解析。</li>
+      <li><strong>示例引导</strong>：few-shot 示例能显著提升输出质量。</li>
+      <li><strong>输出格式</strong>：JSON / Markdown / 表格等明确定义。</li>
+    </ul>
+    <h3>AI 优化 Prompt 真的有效吗</h3>
+    <p>
+      有效。大模型对自身理解的 Prompt 结构非常敏感。AI 优化器能识别你表述中的歧义、缺失约束、模糊指令，按最佳实践重构。实测对简单 Prompt 的输出质量提升 30–60%。但对已经很完善的 Prompt，提升空间有限——优化器更适合作为"Prompt 同事评审"，把你的初稿打磨成生产可用版本。
+    </p>
+    <h3>使用建议</h3>
+    <p>
+      优化版可直接使用，但建议：1.核对优化器列出的"改动点"是否符合你的本意；2.把变量替换为真实场景值；3.首次使用观察输出，必要时回退到原版迭代。本工具支持选择优化目标场景（写作 / 翻译 / 编程 / 分析 / 客服 / 教学 / 角色），不同场景的优化侧重不同。一次优化约 200–500 输入 Token、600–1500 输出 Token，DeepSeek 约 ¥0.001，几乎免费。
+    </p>
+    <p>
+      推荐搭配 <a href="/prompt-generator">Prompt 生成器</a>（从零生成）、<a href="/system-prompt-builder">系统提示词生成器</a>（构建复杂人设）、<a href="/prompt-library">Prompt 提示词库</a>（找模板）使用。
+    </p>
+  </div>
+</ToolLayout>

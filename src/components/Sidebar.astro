@@ -1,0 +1,30 @@
+---
+import { tools, priorityMeta, toolsByPriority, type Priority } from '../data/tools';
+
+const currentPath = Astro.url.pathname;
+const priorityOrder: Priority[] = ['P0', 'P1', 'P2'];
+
+function isActive(slug: string): boolean {
+  return currentPath === `/${slug}/` || currentPath === `/${slug}`;
+}
+---
+<aside class="sidebar">
+  {priorityOrder.map(p => {
+    const list = toolsByPriority(p);
+    const meta = priorityMeta[p];
+    return (
+      <div class="sidebar-section">
+        <div class="sidebar-title">
+          <span class="sidebar-title-dot" style={`background:${meta.color}`}></span>
+          {meta.label}
+        </div>
+        {list.map(t => (
+          <a href={`/${t.slug}`} class={`sidebar-link ${isActive(t.slug) ? 'active' : ''}`}>
+            <span class="sidebar-link-icon">{t.icon}</span>
+            <span>{t.shortName}</span>
+          </a>
+        ))}
+      </div>
+    );
+  })}
+</aside>

@@ -1,0 +1,210 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { tools, priorityMeta, toolsByPriority, type Priority } from '../data/tools';
+
+const priorityOrder: Priority[] = ['P0', 'P1', 'P2'];
+const totalTools = tools.length;
+const byokCount = tools.filter(t => t.byok).length;
+const localCount = totalTools - byokCount;
+---
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HyperGrad AI — 纯前端 AI 工具箱 · 写作/翻译/总结/Prompt/对话 | BYOK 零中转</title>
+  <meta name="description" content="16 个 AI 工具：AI 写作、翻译、总结、标题、营销文案、邮件、周报、代码解释、AI 对话、Prompt 库/优化/生成、Token 计数、Markdown、图片压缩。BYOK 模式密钥本地存储直连官方 API，零中转零存储。" />
+  <meta name="keywords" content="ai工具,ai写作,ai翻译,ai总结,ai对话,prompt,提示词,token计数,ai文案,代码解释" />
+  <link rel="canonical" href="https://ai.hypergrad.cn/" />
+  <meta property="og:title" content="HyperGrad AI — 纯前端 AI 工具箱" />
+  <meta property="og:description" content="16 个 AI 工具，BYOK 模式密钥本地存储直连官方 API，我们零中转零存储。" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <!-- Baidu Tongji（跨子域追踪 hypergrad.cn） -->
+  <script is:inline>
+var _hmt = _hmt || [];
+_hmt.push(['_setCookieDomain', '.hypergrad.cn']);
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a778461c432b29b641ee950a9f686a65";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+  </script>
+</head>
+<body>
+  <!-- DeepSeal 推广条 -->
+  <div class="promo-banner" id="promo-banner">
+    <span>
+      <strong>DeepSeal</strong> — 本地加密笔记应用，你的隐私只有你说了算。
+      <a href="https://hypergrad.cn#pricing" target="_blank" rel="noopener">免费下载 →</a>
+    </span>
+    <span class="promo-close" onclick="document.getElementById('promo-banner').style.display='none'">×</span>
+  </div>
+
+  <Header />
+
+  <main class="main" style="max-width: var(--content-max); margin: 0 auto;">
+    <!-- Hero -->
+    <section class="home-hero">
+      <div class="privacy-badge">{totalTools} 个 AI 工具 · {byokCount} 个 BYOK + {localCount} 个纯前端 · 零中转零存储</div>
+      <h1>纯前端 AI 工具箱<br>密钥本地 · 直连官方 API</h1>
+      <p>
+        AI 写作、翻译、总结、标题、营销文案、邮件、周报、代码解释、AI 对话、Prompt 工具、Token 计数、Markdown 与图片压缩。
+        LLM 能力采用 <strong>BYOK 模式</strong>——密钥存浏览器本地，请求直连 AI 官方 API，<strong>不经我们服务器</strong>；
+        纯前端工具则 100% 在浏览器本地完成。我们零中转、零存储、零 API 成本。
+      </p>
+    </section>
+
+    <!-- 快速导航工具条 -->
+    <section class="quick-nav">
+      <div class="quick-nav-title">快速访问</div>
+      <div class="quick-nav-chips">
+        {tools.map(t => (
+          <a href={`/${t.slug}`} class="quick-chip">
+            <span class="quick-chip-icon">{t.icon}</span>
+            <span>{t.name}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 按优先级分区 -->
+    {priorityOrder.map(p => {
+      const list = toolsByPriority(p);
+      const meta = priorityMeta[p];
+      return (
+        <section class="priority-section">
+          <div class="priority-header">
+            <h2>{meta.label}</h2>
+            <span class="priority-tag" style={`background:${meta.bg};color:${meta.color}`}>{p} · {list.length} 个</span>
+            <span class="priority-desc">{meta.desc}</span>
+          </div>
+          <div class="tool-grid">
+            {list.map(t => (
+              <a href={`/${t.slug}`} class="tool-card-home">
+                <div class="card-icon">{t.icon}</div>
+                <h3>{t.name}</h3>
+                <p>{t.desc}</p>
+                <div class="card-meta">
+                  <span>{t.category}</span>
+                  <span>{t.byok ? '需 API Key' : '纯前端'}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+    <!-- 关于 -->
+    <section class="seo-content">
+      <h2>关于 HyperGrad AI</h2>
+      <p>
+        HyperGrad AI 是一个 AI 工具集合，收录 <strong>{totalTools} 个</strong>工具，覆盖 AI 写作、翻译、总结、对话、Prompt 工程、
+        代码理解、Token 估算、文档与图像处理。与其他在线 AI 站不同，本站采用 <strong>BYOK（Bring Your Own Key，自带密钥）</strong>模式：
+        你自行申请 AI 服务商的 API Key，填入工具，由浏览器直接调用对应 AI 官方 API。这意味着：
+      </p>
+      <ul>
+        <li><strong>密钥安全</strong>：API Key 仅存储在你浏览器的 localStorage，从不通过网络发送到我们的服务器。</li>
+        <li><strong>零中转</strong>：你的输入和 AI 的输出在浏览器与 AI 服务商之间直传，<strong>不经过我们的任何服务器</strong>。</li>
+        <li><strong>零存储</strong>：我们不记录、不存储你的任何请求与生成内容。</li>
+        <li><strong>零成本</strong>：我们无需为 API 调用付费，工具本身永久免费；你只为自己的实际用量向 AI 服务商付费。</li>
+      </ul>
+
+      <h3>BYOK 是什么？为什么更便宜？</h3>
+      <p>
+        BYOK 即 Bring Your Own Key。多数在线 AI 站点采用"代付"模式：你充值给站点，站点用自家 Key 调用 API，
+        再加价卖给你 Token——通常比 API 原价贵 3-10 倍，且你的数据会经过站点服务器。BYOK 把选择权还给你：
+        你直接向 AI 服务商（如深度求索、OpenAI、Anthropic、智谱）申请 Key，
+        按官方价付费，<strong>没有中间商赚差价</strong>，数据也不经我们手。
+      </p>
+      <p>
+        成本对比：用 <strong>DeepSeek（深度求索）</strong>，百万 Token 输入仅需 ¥1、输出 ¥2，生成一篇 1000 字文章不到一分钱；
+        ChatGPT Plus 月费 ¥150，按官方 API 算你每月大概能用 ¥1500 等价的 Token。轻度用户用 BYOK 一年可能花不到 ¥10。
+      </p>
+
+      <h3>支持的 AI 服务商</h3>
+      <ul>
+        <li><strong>DeepSeek（深度求索）</strong>：国产模型，最便宜，中文表现优秀。推荐首选。<a href="https://platform.deepseek.com/api_keys" target="_blank" rel="noopener">申请 Key →</a></li>
+        <li><strong>OpenAI</strong>：GPT-4o / GPT-4o-mini，质量顶尖，需海外信用卡。<a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener">申请 Key →</a></li>
+        <li><strong>Anthropic Claude</strong>：Claude 3.5 Sonnet 写作质量公认最佳。<a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">申请 Key →</a></li>
+        <li><strong>智谱 GLM</strong>：国产模型，GLM-4-Flash 完全免费。<a href="https://open.bigmodel.cn/usercenter/proj-mgmt/apikeys" target="_blank" rel="noopener">申请 Key →</a></li>
+      </ul>
+      <p>
+        四家服务商可在工具内一键切换，密钥分别保存。同一个工具（如 AI 写作）今天用 DeepSeek 省钱，明天换 Claude 求最佳质量，无缝切换。
+      </p>
+
+      <h3>纯前端工具（无需 API Key）</h3>
+      <p>
+        除了 BYOK AI 工具，本站还提供 <strong>{localCount} 个纯前端工具</strong>，无需任何配置即可使用：
+        Prompt 提示词库、系统提示词生成器、Token 计数器、Markdown 转换器、图片压缩。这些工具 100% 在浏览器本地运算，
+        数据不离开你的设备，适合处理敏感内容。
+      </p>
+
+      <h3>与 DeepSeal 的关系</h3>
+      <p>
+        HyperGrad AI 与 <a href="https://hypergrad.cn" target="_blank" rel="noopener">DeepSeal 加密笔记应用</a>
+        同属 HyperGrad 生态。DeepSeal 是一款本地加密的桌面笔记应用，采用三层信封加密架构，数据永不离开设备。
+        把 AI 生成的优质内容保存到 DeepSeal，是兼顾效率与隐私的完整工作流。两款产品共享同一个核心理念：<strong>你的数据只有你说了算</strong>。
+      </p>
+      <p>
+        也欢迎访问姊妹站点 <a href="https://crypto.hypergrad.cn" target="_blank" rel="noopener">HyperGrad Crypto</a>
+        （16 个加密工具）与 <a href="https://devtools.hypergrad.cn" target="_blank" rel="noopener">HyperGrad DevTools</a>
+        （20+ 开发者工具），同样 100% 本地处理。
+      </p>
+    </section>
+  </main>
+
+  <Footer />
+
+  <style is:global>
+    .quick-nav {
+      margin: 28px 0 8px;
+      padding: 16px 20px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .quick-nav-title {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .quick-nav-chips {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: thin;
+    }
+    .quick-nav-chips::-webkit-scrollbar { height: 6px; }
+    .quick-nav-chips::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    .quick-chip {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      font-size: 13px;
+      color: var(--text);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .quick-chip:hover {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+    }
+    .quick-chip-icon { font-size: 14px; }
+  </style>
+</body>
+</html>

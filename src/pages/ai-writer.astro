@@ -1,0 +1,31 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import AiWriter from '../components/tools/AiWriter.tsx';
+---
+<ToolLayout slug="ai-writer">
+  <AiWriter client:load />
+  <div slot="seo-content">
+    <h2>AI 写作助手：从主题到成稿的零中转工作流</h2>
+    <p>
+      AI 写作助手是 HyperGrad AI 工具箱的核心入口。你只需输入主题（例如"远程办公对中小企业团队协作的影响"）、选择文体（文章 / 段落 / 文案 / 故事 / 演讲稿）、设置字数与语气，工具即可调用你自带 API Key 的大语言模型，在浏览器里直接生成一篇结构完整、风格贴合的初稿。整个请求由浏览器发往 AI 官方 API，不经过我们的服务器，密钥保存在你本机 localStorage，我们是零中转、零存储。
+    </p>
+    <h3>四步完成一篇高质量初稿</h3>
+    <ol>
+      <li><strong>填写主题</strong>：尽量具体，"小红书种草文案：¥199 无线耳机，目标大学生"比"耳机文案"产出更精准。</li>
+      <li><strong>选文体与语气</strong>：议论文用学术正式，文案用活泼口语，演讲稿用激励昂扬，工具会自动适配提示词模板。</li>
+      <li><strong>控字数</strong>：300–3000 字区间，长文建议分段生成再拼接，避免模型注意力衰减。</li>
+      <li><strong>人工润色</strong>：把 AI 输出当初稿，核对事实、补案例、删套话，即可发布。</li>
+    </ol>
+    <h3>适用场景</h3>
+    <p>
+      自媒体内容创作（公众号长文、小红书种草、知乎回答）、企业内部材料（产品介绍、活动通稿、内部周报）、教学讲义、演讲稿、SEO 文章批量产出。对高频产出的运营同学，单篇成本不到一分钱（DeepSeek 为例），相比订阅 ChatGPT Plus 月费 $20，BYOK 模式在轻度使用下节省 95% 以上。
+    </p>
+    <h3>BYOK 模式说明</h3>
+    <p>
+      本工具采用 BYOK（Bring Your Own Key）模式：你在表单中填入自己申请的 API Key（支持 DeepSeek、OpenAI、Anthropic Claude、智谱 GLM），浏览器使用该 Key 直接调用对应 AI 官方 API。我们不做任何代理或中转，不存你的 Key，不存你的输入与输出。DeepSeek 是当前性价比最高的选择，百万 Token 输入约 ¥1、输出约 ¥2，日常写作用它最划算；复杂推理或多语言场景可切换 GPT-4o / Claude Sonnet。
+    </p>
+    <p>
+      配合本站的 <a href="/ai-summary">AI 总结摘要</a>、<a href="/ai-title">AI 标题生成器</a>、<a href="/ai-marketing">AI 营销文案</a>，可形成"选题 → 写作 → 配图标题 → 多平台分发"的完整内容生产线。
+    </p>
+  </div>
+</ToolLayout>

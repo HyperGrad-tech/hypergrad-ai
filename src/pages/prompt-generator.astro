@@ -1,0 +1,40 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import PromptGenerator from '../components/tools/PromptGenerator.tsx';
+---
+<ToolLayout slug="prompt-generator">
+  <PromptGenerator client:load />
+  <div slot="seo-content">
+    <h2>AI Prompt 生成器：从任务目标反向生成完整提示词</h2>
+    <p>
+      不会写 Prompt？没关系。只需用大白话描述你的任务目标（如"帮我写小红书种草文案"或"分析一份销售数据"），AI Prompt 生成器就会反向生成一份结构完整的可用 Prompt，包含角色设定、执行步骤、约束条件、输出格式，甚至带 <code>{'{{变量}}'}</code> 占位符方便复用。基于 BYOK 模式，密钥本地存储，请求直连 AI 官方 API。
+    </p>
+    <h3>和 Prompt 优化器的区别</h3>
+    <ul>
+      <li><strong>优化器</strong>：你已有粗糙 Prompt，让它变好。</li>
+      <li><strong>生成器</strong>：你只有任务目标，从零生成结构化 Prompt。</li>
+    </ul>
+    <p>两者可串联使用：先用生成器出初稿，再用优化器打磨。</p>
+    <h3>生成的 Prompt 包含哪些部分</h3>
+    <ol>
+      <li><strong>角色设定</strong>（你是…）</li>
+      <li><strong>任务目标</strong>（要达成什么）</li>
+      <li><strong>输入说明</strong>（用户提供什么）</li>
+      <li><strong>执行步骤</strong>（先…再…）</li>
+      <li><strong>约束条件</strong>（语气 / 字数 / 禁用项）</li>
+      <li><strong>输出格式</strong>（Markdown / JSON / 表格）</li>
+      <li><strong>示例</strong>（可选，few-shot 引导）</li>
+    </ol>
+    <h3>任务描述写多详细最有效</h3>
+    <p>
+      越具体越好。"帮小红书写种草文案"不如"帮一款 ¥199 无线耳机写小红书种草文案，目标用户是大学生，强调性价比，文案带 emoji 和 3 个 hashtag"。描述越具体，生成 Prompt 越贴合你的真实需求。本工具支持选择语言（中文 / 英文）和详略程度（精简 / 标准 / 详尽）。
+    </p>
+    <h3>中文 Prompt vs 英文 Prompt</h3>
+    <p>
+      在 GPT / Claude 上英文 Prompt 通常效果略好（训练数据英文占比高），但中文 Prompt 在 DeepSeek、智谱上效果相当，且对中文任务更精准。建议：中文任务用中文 Prompt + DeepSeek，多语言或英文任务用英文 Prompt + GPT/Claude。
+    </p>
+    <p>
+      推荐搭配 <a href="/prompt-optimizer">Prompt 优化器</a> 打磨生成结果，搭配 <a href="/ai-chat">AI 对话</a> 直接运行生成的 Prompt。
+    </p>
+  </div>
+</ToolLayout>

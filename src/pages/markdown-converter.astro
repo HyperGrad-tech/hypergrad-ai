@@ -1,0 +1,35 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import MarkdownConverter from '../components/tools/MarkdownConverter.tsx';
+---
+<ToolLayout slug="markdown-converter">
+  <MarkdownConverter client:load />
+  <div slot="seo-content">
+    <h2>Markdown 转换器：Markdown 与 HTML 双向互转</h2>
+    <p>
+      Markdown 是轻量级标记语言，用纯文本格式编写结构化文档（标题、列表、链接、代码块、表格），可一键转换为 HTML / PDF / Word。广泛用于技术文档、博客（掘金 / CSDN / GitHub Pages）、笔记（Obsidian / Notion）、README。本工具支持 Markdown 与 HTML 双向互转，实时预览渲染效果，纯浏览器本地处理，数据不离开浏览器。
+    </p>
+    <h3>支持的语法</h3>
+    <ul>
+      <li><strong>CommonMark 标准</strong>：标题、段落、强调、列表、链接、图片、代码、引用、分隔线、表格。</li>
+      <li><strong>GFM 扩展</strong>：任务列表、删除线、自动链接、表格增强。</li>
+      <li><strong>代码块</strong>：支持语法高亮标记（渲染由目标平台负责）。</li>
+    </ul>
+    <p>数学公式（KaTeX / MathJax）和流程图需要专门渲染库，本工具暂不渲染但保留源码。</p>
+    <h3>MD → HTML 模式</h3>
+    <p>
+      适合把 Markdown 文档发布到不支持 MD 的平台（如公众号、企业 CMS、邮件）。本工具提供"预览"和"源码"两个标签页：预览看渲染效果，源码复制 HTML 直接粘贴。
+    </p>
+    <h3>HTML → MD 模式</h3>
+    <p>
+      适合把网页内容转成 Markdown 存入笔记应用（Obsidian / Notion），或把富文本编辑器内容迁移到 MD 平台。注意：HTML 转 Markdown 会丢失部分 CSS 样式（颜色、字体、布局），因为 Markdown 不支持这些语义。结构信息（标题层级、列表、链接、图片、表格）会保留。复杂 HTML（嵌套 div、内联样式）转换后可能不完美，建议转换后人工微调。
+    </p>
+    <h3>批量转换与导出</h3>
+    <p>
+      本工具是单文档实时转换，复制结果到剪贴板即可粘贴到目标平台。批量转换建议用命令行工具（如 pandoc）。导出 PDF / Word 需配合浏览器打印或专门工具，本工具专注 Markdown ↔ HTML 核心转换。
+    </p>
+    <p>
+      这是纯前端工具，不需要 API Key，数据不离开浏览器。搭配 <a href="/ai-writer">AI 写作助手</a> 生成 MD 内容，搭配 <a href="/ai-summary">AI 总结摘要</a> 产出 MD 大纲。
+    </p>
+  </div>
+</ToolLayout>

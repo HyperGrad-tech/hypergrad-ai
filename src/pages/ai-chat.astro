@@ -1,0 +1,31 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import AiChat from '../components/tools/AiChat.tsx';
+---
+<ToolLayout slug="ai-chat">
+  <AiChat client:load />
+  <div slot="seo-content">
+    <h2>AI 对话：自带 API Key 的多模型聊天客户端</h2>
+    <p>
+      AI 对话工具是 HyperGrad AI 工具箱的通用入口。它支持自由聊天、系统人设（System Prompt）、角色扮演、多轮上下文记忆，可切换 DeepSeek / GPT-4o / Claude / 智谱 GLM 等主流模型。与 ChatGPT 官网订阅不同，本工具采用 BYOK 模式：你用自己的 API Key 调用 AI 官方 API，按 Token 付费，轻度用户比 ChatGPT Plus 月费 $20 便宜 95% 以上，重度用户也能灵活切换最划算的模型。
+    </p>
+    <h3>什么是系统人设（System Prompt）</h3>
+    <p>
+      系统人设是预设给 AI 的角色说明，在整个对话中持续生效，优先级高于用户消息。例如"你是资深心理咨询师，用温暖共情的语气回答"会让你整场对话都被 AI 以该人设回应。本工具支持折叠编辑系统人设，适合角色扮演、客服模拟、写作教练、编程助手等场景。配合本站的 <a href="/system-prompt-builder">系统提示词生成器</a> 可视化构建复杂人设。
+    </p>
+    <h3>多轮对话的 Token 成本</h3>
+    <p>
+      每轮对话都会把之前的消息作为上下文重新发送给 AI，长对话累计 Token 增长显著。建议：1.无关话题新建对话；2.不必要时清理历史；3.长对话定期开新轮次避免上下文爆炸。本工具显示当前会话 Token 用量，方便你把控成本。
+    </p>
+    <h3>隐私与数据安全</h3>
+    <p>
+      对话记录仅存储在你浏览器本地（刷新页面保留），不上传我们的服务器。清除浏览器数据即清空。如需长期保存请自行导出。需注意：你的对话内容会发送给你选择的 AI 服务商（如 DeepSeek），其数据政策需自行查阅。我们的服务器全程零中转零存储。
+    </p>
+    <p>
+      流式输出（streaming）让 AI 回复像打字一样逐字显示，体验更接近 ChatGPT 官网。支持 Enter 发送、Shift+Enter 换行、随时停止生成、一键清空对话。
+    </p>
+    <p>
+      进阶用法：配合 <a href="/prompt-library">Prompt 提示词库</a> 复用高质量模板，配合 <a href="/token-counter">Token 计数器</a> 预估成本。
+    </p>
+  </div>
+</ToolLayout>

@@ -1,0 +1,31 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import TokenCounter from '../components/tools/TokenCounter.tsx';
+---
+<ToolLayout slug="token-counter">
+  <TokenCounter client:load />
+  <div slot="seo-content">
+    <h2>Token 计数器：估算文本 Token 数量与 API 费用</h2>
+    <p>
+      Token 是大模型处理文本的最小单位，也是 API 计费的依据。英文约 1 Token ≈ 0.75 单词（4 字符），中文约 1 字 ≈ 1.5–2 Token（不同模型差异大）。本工具估算一段文本在 GPT / Claude / DeepSeek / 智谱等主流模型下的 Token 数量与 API 费用，支持中英文混合，内置 8 个主流模型的最新单价。纯浏览器本地估算，数据不离开浏览器。
+    </p>
+    <h3>Token 和字数的关系</h3>
+    <ul>
+      <li><strong>英文</strong>：1 Token ≈ 0.75 单词 ≈ 4 字符。</li>
+      <li><strong>中文</strong>：1 字 ≈ 1.5–2 Token（GPT），DeepSeek / 智谱对中文优化，1 字 ≈ 1–1.5 Token。</li>
+      <li><strong>标点与空格</strong>：英文标点通常独立成 Token，中文标点行为因模型而异。</li>
+    </ul>
+    <p>例如"你好"在 GPT 中约 2 Token，在 DeepSeek 中约 1–2 Token。不同模型 Tokenizer 不同，同一文本 Token 数可能差 20–40%。</p>
+    <h3>如何估算一次 API 调用费用</h3>
+    <p>
+      费用 = (输入 Token × 输入单价) + (输出 Token × 输出单价)。例如 DeepSeek 输入 ¥1/百万、输出 ¥2/百万，一次 1000 输入 + 500 输出 ≈ ¥0.002。本工具内置主流模型最新单价，输入文本即可看到预估费用、对比表格、4 张统计卡片（输入 Token / 输入费用 / 输出费用 / 总费用）。
+    </p>
+    <h3>准确度说明</h3>
+    <p>
+      本工具提供估算值，误差通常在 ±10% 以内。精确值需调用模型官方 Tokenizer（如 OpenAI 的 tiktoken、Anthropic 的计数 API）。对于成本预估和 Prompt 长度把控，估算足够。涉及精确计费的场景建议以 API 返回的 usage 字段为准。本工具对中文采用 CJK 感知的分词估算，每个模型有独立的中文 Token 系数，比简单的"字数 × 1.5"更准。
+    </p>
+    <p>
+      适合搭配 <a href="/ai-chat">AI 对话</a>（多轮对话累计 Token 监控）、<a href="/prompt-optimizer">Prompt 优化器</a>（评估优化前后长度变化）使用。
+    </p>
+  </div>
+</ToolLayout>

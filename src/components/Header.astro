@@ -1,0 +1,51 @@
+---
+import { tools } from '../data/tools';
+
+const searchIndex = tools.map(t => ({
+  slug: t.slug,
+  name: t.name,
+  shortName: t.shortName,
+  keywords: t.keywords,
+}));
+---
+<header class="header">
+  <a href="/" class="header-logo">
+    <div class="logo-mark">H</div>
+    <div>
+      HyperGrad
+      <div class="logo-sub">AI · 智能助手工具箱</div>
+    </div>
+  </a>
+  <div class="header-search">
+    <input type="search" id="site-search" placeholder="搜索工具（如 写作、翻译、Prompt、Token…）" autocomplete="off" />
+  </div>
+  <nav class="header-nav">
+    <a href="/">全部工具</a>
+    <a href="https://crypto.hypergrad.cn" target="_blank" rel="noopener">加密工具 ↗</a>
+    <a href="https://devtools.hypergrad.cn" target="_blank" rel="noopener">开发者工具 ↗</a>
+    <a href="https://hypergrad.cn" target="_blank" rel="noopener">DeepSeal 官网</a>
+    <a href="https://hypergrad.cn#pricing" target="_blank" rel="noopener" class="header-cta">下载 DeepSeal</a>
+  </nav>
+</header>
+<script is:inline define:vars={{ searchIndex }}>
+  // 站内搜索：输入关键词跳转匹配工具
+  var search = document.getElementById('site-search');
+  if (search) {
+    search.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        var q = search.value.trim().toLowerCase();
+        if (!q) return;
+        // 全字段匹配
+        var best = searchIndex.find(function (t) {
+          return t.name.toLowerCase().indexOf(q) !== -1 ||
+            t.shortName.toLowerCase().indexOf(q) !== -1 ||
+            t.slug.indexOf(q) !== -1 ||
+            t.keywords.some(function (k) { return k.toLowerCase().indexOf(q) !== -1 || q.indexOf(k.toLowerCase()) !== -1; });
+        });
+        if (best) {
+          window.location.href = '/' + best.slug;
+        }
+      }
+    });
+  }
+</script>

@@ -1,0 +1,30 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import AiSummary from '../components/tools/AiSummary.tsx';
+---
+<ToolLayout slug="ai-summary">
+  <AiSummary client:load />
+  <div slot="seo-content">
+    <h2>AI 总结摘要：信息过载时代的高效阅读助手</h2>
+    <p>
+      面对动辄上万字的论文、会议纪要、行业报告、长推文，逐字阅读成本极高。AI 总结摘要工具让你把长文粘贴进来，选择输出形式（要点式 / 段落式 / 大纲式），即可在数秒内得到一份结构清晰的浓缩版本。工具基于 BYOK 模式直连你选择的 AI 官方 API，密钥本地存储，输入与输出均不经过我们的服务器。
+    </p>
+    <h3>三种输出形式各有侧重</h3>
+    <ul>
+      <li><strong>要点式摘要</strong>：3–7 条核心观点，适合快速判断"要不要细读"。</li>
+      <li><strong>段落式摘要</strong>：200–400 字连贯概述，适合作为转发配文或汇报材料。</li>
+      <li><strong>大纲式摘要</strong>：Markdown 层级大纲，可一键转思维导图，适合学习与复习。</li>
+    </ul>
+    <h3>处理超长文本的建议</h3>
+    <p>
+      不同模型上下文窗口不同：DeepSeek 支持 64K–128K Token（约 5–10 万字中文），GPT-4o 支持 128K，Claude Sonnet 支持 200K。超出窗口的内容会被截断。建议：1.超长文档先按章节分段，分别总结再汇总；2.学术论文在提示词中明确"必须保留研究方法、数据、结论"；3.会议纪要指定"按发言人归纳观点"。
+    </p>
+    <h3>准确性与人工核对</h3>
+    <p>
+      现代大模型对事实性总结准确率较高，但对长文本仍可能合并相近内容或遗漏细节。关键场景（合同条款、医疗建议、法律结论）请务必对照原文核对。本工具会在输入超过 30000 字时给出提示，帮助你判断是否需要分段。总结一篇 8000 字论文用 DeepSeek 约花费 ¥0.002，几乎可忽略不计，非常适合批量处理文献。
+    </p>
+    <p>
+      适合与本工具搭配使用：<a href="/ai-writer">AI 写作助手</a>（基于摘要扩写）、<a href="/markdown-converter">Markdown 转换器</a>（大纲转思维导图）、<a href="/ai-report">AI 周报日报生成器</a>。
+    </p>
+  </div>
+</ToolLayout>

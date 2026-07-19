@@ -1,0 +1,41 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import ImageCompressor from '../components/tools/ImageCompressor.tsx';
+---
+<ToolLayout slug="image-compressor">
+  <ImageCompressor client:load />
+  <div slot="seo-content">
+    <h2>图片压缩：浏览器本地压缩 PNG / JPEG / WebP</h2>
+    <p>
+      图片体积直接影响网页加载速度、SEO 排名和用户留存。本工具使用浏览器 Canvas API 在你的设备本地完成压缩，图片数据从不离开浏览器，不上传不存储——这是本工具相比多数在线压缩站的核心优势（多数在线站会把图片上传到服务器处理）。适合处理敏感截图、身份证件照、商业素材。支持 PNG / JPEG / WebP 输入输出，可调质量与最大尺寸，支持批量。
+    </p>
+    <h3>有损 vs 无损压缩</h3>
+    <ul>
+      <li><strong>有损压缩</strong>（JPEG / WebP 调低质量）：永久损失画质，文件更小。质量 80 时肉眼几乎无差异而文件减小 60–80%。</li>
+      <li><strong>无损压缩</strong>（PNG 优化）：不损失画质，但压缩率有限。适合精细图标、含文字的截图。</li>
+    </ul>
+    <p>文档、截图场景推荐有损，精细图标用 PNG 优化。</p>
+    <h3>格式选择建议</h3>
+    <ul>
+      <li><strong>WebP</strong>：现代网页首选，同质量比 JPEG 小 25–35%，支持透明。</li>
+      <li><strong>JPEG</strong>：兼容性最好，适合照片类内容。</li>
+      <li><strong>PNG</strong>：需要透明背景或无损时使用。</li>
+    </ul>
+    <p>GIF 动图本工具仅处理首帧，HEIC 等 Apple 格式需浏览器支持，部分环境不可用。</p>
+    <h3>压缩到指定大小</h3>
+    <p>
+      本工具支持设置目标大小（如 100KB 以下），自动迭代调整质量参数逼近目标（可能存在 ±10% 误差）。也可手动滑块调节质量实时看文件大小变化。注意：过小目标（如 1MB 图压到 50KB）会导致明显画质损失，建议合理设置。
+    </p>
+    <h3>批量压缩</h3>
+    <p>
+      支持批量上传，每张图独立显示压缩前后大小与节省比例，底部汇总总节省。可单张下载或一键打包下载全部。压缩参数全局应用，方便统一处理一批图片。
+    </p>
+    <h3>隐私说明</h3>
+    <p>
+      100% 本地处理，图片不离开你的设备，不上传不存储。这是本工具相对 Tinypng、Squoosh 等在线工具的核心差异——后者多数需要上传图片到服务器。对涉及隐私的图片（身份证、医疗影像、商业机密截图），本地压缩是唯一安全选择。
+    </p>
+    <p>
+      搭配 <a href="/markdown-converter">Markdown 转换器</a> 把压缩后的图片嵌入技术文档，搭配 <a href="/ai-marketing">AI 营销文案</a> 为电商详情页配图文案。
+    </p>
+  </div>
+</ToolLayout>

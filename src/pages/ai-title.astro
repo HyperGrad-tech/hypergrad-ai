@@ -1,0 +1,32 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import AiTitle from '../components/tools/AiTitle.tsx';
+---
+<ToolLayout slug="ai-title">
+  <AiTitle client:load />
+  <div slot="seo-content">
+    <h2>AI 标题生成器：从主题到爆款标题的批量产出</h2>
+    <p>
+      标题决定打开率。无论是公众号、小红书、抖音、知乎还是 SEO 文章，标题的好坏直接影响流量。AI 标题生成器让你输入主题或文章摘要，指定平台风格与生成数量，批量产出多个候选标题，供你挑选和微调。工具基于 BYOK 模式，密钥本地存储，请求直连 AI 官方 API。
+    </p>
+    <h3>不同平台的标题套路</h3>
+    <ul>
+      <li><strong>小红书体</strong>：情绪化、口语化、emoji 与数字密集（"绝了！这 5 款好物我回购了 N 次"）。</li>
+      <li><strong>公众号体</strong>：信息密度 + 悬念（"我用了 3 年才明白的真相"）。</li>
+      <li><strong>抖音/快手</strong>：钩子前置、强冲突、口语化。</li>
+      <li><strong>知乎/资讯体</strong>：客观陈述 + 关键词前置。</li>
+      <li><strong>SEO 标题</strong>：含主关键词、控制字数（≤30 字）、避免标题党。</li>
+    </ul>
+    <h3>标题党与 SEO 风险</h3>
+    <p>
+      搜索引擎（百度 / Google）会惩罚严重题文不符的标题党，长期看会拉低权重。建议标题真实反映内容，关键词自然出现而非堆砌，控制在 30 字以内。本工具的 SEO 体模式自动遵循这些原则。爆款标题套路（"YYDS""绝绝子"）会有同质化，建议结合自身内容微调，加入差异化细节。
+    </p>
+    <h3>使用建议</h3>
+    <p>
+      一次生成 10–20 个供挑选最划算，太多反而增加筛选成本。AI 每次生成都有随机性，重复概率极低，但套路会重复。挑出 3–5 个最贴合内容的标题做 A/B 测试，胜出者用作主标题。标题本身不构成著作权侵权，但避免直接抄袭他人已发表标题。生成 20 个标题用 DeepSeek 约 ¥0.001，几乎免费。
+    </p>
+    <p>
+      搭配 <a href="/ai-marketing">AI 营销文案</a> 形成标题 + 正文生产线，搭配 <a href="/prompt-generator">Prompt 生成器</a> 自定义更精细的标题风格。
+    </p>
+  </div>
+</ToolLayout>

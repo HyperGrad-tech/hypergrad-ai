@@ -1,0 +1,36 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import AiMarketing from '../components/tools/AiMarketing.tsx';
+---
+<ToolLayout slug="ai-marketing">
+  <AiMarketing client:load />
+  <div slot="seo-content">
+    <h2>AI 营销文案生成器：按平台风格批量产出种草文案</h2>
+    <p>
+      不同平台的文案风格差异巨大：抖音短平快强情绪，小红书 emoji 密集痛点 + 解决方案，电商详情页走 FAB 卖点公式，朋友圈短生活化弱广告感。AI 营销文案生成器让你输入产品信息与卖点，按平台预设风格批量产出文案，可自动添加 emoji 和 hashtag，并内置"广告法合规模式"过滤极限词。基于 BYOK 模式，密钥本地存储，请求直连 AI 官方 API。
+    </p>
+    <h3>平台风格模板</h3>
+    <ul>
+      <li><strong>小红书种草</strong>：emoji 密集、痛点 + 个人体验 + 解决方案、文末 3–5 个 hashtag。</li>
+      <li><strong>抖音/快手</strong>：3 秒钩子、强冲突、口语化、强 CTA。</li>
+      <li><strong>电商详情页</strong>：FAB 公式（属性-优势-利益）+ 痛点 + 信任背书。</li>
+      <li><strong>朋友圈广告</strong>：短、生活化、弱广告感、强场景。</li>
+      <li><strong>公众号软文</strong>：故事开场 + 干货中段 + 产品植入。</li>
+    </ul>
+    <h3>避免"千篇一律"的 AI 文案</h3>
+    <p>
+      AI 文案会有套路化倾向。规避方法：1.提供差异化产品细节（材质、工艺、用户故事）而非泛泛卖点；2.指定独特语气（"东北话""文艺青年"）；3.生成多版本人工筛选混合；4.用 A/B 测试找最优。AI 文案是初稿加速器，不是终稿。
+    </p>
+    <h3>广告法合规</h3>
+    <p>
+      AI 可能生成"最""第一""绝对"等极限词，违反《广告法》。本工具可勾选"广告法合规模式"自动过滤常见极限词。但仍建议发布前人工核查：医疗、金融、教育等敏感行业的合规表述；功效型产品避免承诺具体效果；比较性宣传确保有据可查。
+    </p>
+    <h3>hashtag 使用策略</h3>
+    <p>
+      hashtag 不要堆砌（小红书限流），3–5 个精准 tag 优于 10 个泛 tag。组合策略：1 个品类大词 + 2 个长尾场景词 + 1 个品牌词。AI 会按平台惯例放置（emoji 在句末或独立行，hashtag 在文末）。
+    </p>
+    <p>
+      搭配 <a href="/ai-title">AI 标题生成器</a>产出配套标题，搭配 <a href="/prompt-generator">Prompt 生成器</a>自定义更精细的文案风格。
+    </p>
+  </div>
+</ToolLayout>

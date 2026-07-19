@@ -1,0 +1,35 @@
+---
+import ToolLayout from '../layouts/ToolLayout.astro';
+import SystemPromptBuilder from '../components/tools/SystemPromptBuilder.tsx';
+---
+<ToolLayout slug="system-prompt-builder">
+  <SystemPromptBuilder client:load />
+  <div slot="seo-content">
+    <h2>系统提示词生成器：可视化构建 Agent 人设</h2>
+    <p>
+      高质量 System Prompt 通常几百上千字，包含人设、能力边界、语气、规则、示例、输出格式等多模块。手写容易遗漏或结构混乱。本工具分模块引导填写，自动拼接成结构化 Prompt，降低门槛，保证完整性。生成结果可复制粘贴到任意支持 system 字段的 AI 平台。纯前端，无需 API Key，数据不离开浏览器。
+    </p>
+    <h3>System Prompt 和普通 Prompt 的区别</h3>
+    <p>
+      System Prompt 是设定在对话最顶层的"角色定义"，在整个会话中持续生效，优先级高于用户消息。普通 Prompt 是每轮用户消息。System Prompt 决定 AI 的"人设"和"行为准则"，适合做客服、助手、角色扮演。OpenAI、Anthropic、DeepSeek、智谱、月之暗面、通义千问等 API 都支持 system 字段；ChatGPT / Claude / DeepSeek 网页版则对应"自定义指令"或对话框首条 system 消息。
+    </p>
+    <h3>八个填写模块</h3>
+    <ul>
+      <li><strong>身份人设</strong>：你是谁，经验背景，价值观。</li>
+      <li><strong>背景信息</strong>：服务对象、场景、业务上下文。</li>
+      <li><strong>语气风格</strong>：正式 / 友好 / 幽默 / 专业 / 委婉。</li>
+      <li><strong>核心能力</strong>：你擅长什么、能解决什么问题。</li>
+      <li><strong>能力边界</strong>：你不做什么、何时拒绝、何时建议人工。</li>
+      <li><strong>输出格式</strong>：Markdown / JSON / 表格 / 分点。</li>
+      <li><strong>示例</strong>：few-shot 引导正确行为。</li>
+      <li><strong>兜底策略</strong>：模糊问题如何澄清、异常如何处理。</li>
+    </ul>
+    <h3>人设描述的最佳公式</h3>
+    <p>
+      身份 + 经验 + 价值观 + 说话方式。例如"你是资深产品经理，10 年 C 端经验，重视用户洞察和数据驱动，说话直接、用案例、避免空话"比单纯写"你是产品经理"效果好得多。本工具内置 5 套预设（客服 / 写作教练 / 翻译 / 程序员 / 清空），新手可基于预设微调。
+    </p>
+    <p>
+      生成结果可直接粘贴到 <a href="/ai-chat">AI 对话</a> 的系统人设框中使用，也可配合 <a href="/prompt-optimizer">Prompt 优化器</a> 进一步打磨。
+    </p>
+  </div>
+</ToolLayout>
