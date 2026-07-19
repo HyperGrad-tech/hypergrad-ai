@@ -4,11 +4,11 @@
  * ============================================ */
 
 :root {
-  /* ===== 色彩系统（加密站主色：深蓝 #1E3A5F） ===== */
-  --blue: #1E3A5F;
-  --blue-light: #2E5380;
-  --blue-dark: #142A45;
-  --blue-bg: #EEF2F7;
+  /* ===== 色彩系统（加密站主色：深蓝 #4F46E5） ===== */
+  --blue: #6366F1;
+  --blue-light: #818CF8;
+  --blue-dark: #4F46E5;
+  --blue-bg: #EEF2FF;
 
   --bg: #FAFAF7;
   --bg-card: #FFFFFF;
@@ -916,7 +916,7 @@ input, textarea, select {
   font-size: 13px;
   line-height: 1.7;
 }
-.json-key { color: #3B7AB0; }
+.json-key { color: #818CF8; }
 .json-string { color: #2D7A4F; }
 .json-number { color: #C8862E; }
 .json-boolean { color: #B83A3A; }
